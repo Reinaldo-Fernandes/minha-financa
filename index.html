@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dicas Financeiras para Jovens</title>
+  <link rel="stylesheet" href="./src/css/style.css" />
+  <script defer src="/src/js/app.js"></script>
+  <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/src/css/mobile.css" media="screen and (max-width: 768px)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!--  Hero Section -->
+  <header class="hero">
+    <h1>Comece sua liberdade financeira agora</h1>
+    <p>Dicas práticas e uma calculadora simples para ajudar você a economizar de verdade.</p>
+    <a href="#calculadora" class="btn" id="btn-comecar">Começar</a>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <main>
+    <section id="calculadora" class="section calculadora hidden">
+        <h2>Calculadora de Economia Mensal</h2>
+        <form id="form-calculadora">
+          <label>Renda Mensal (R$)
+            <input type="number" id="renda" required />
+          </label>
+          <label>Despesas Totais (R$)
+            <input type="number" id="despesas" required />
+          </label>
+          <label>Meta de Economia (R$)
+            <input type="number" id="meta" required />
+          </label>
+          <label>Gastos Extras Mensais (R$)
+            <input type="number" id="gastos-extras" required />
+          </label>
+          <button type="submit">Calcular</button>
+        </form>
+        <div id="resultado" class="resultado"></div>
+      </section>
+
+    <!--  Dicas Práticas -->
+    <div class="carousel-container" id="carouselContainer">
+      <div class="dica-card" id="dicaTexto">Carregando dica...</div>
+    </div>
+    <div class="carousel-indicadores" id="indicadores"></div>
+  </main>
+
+  <!--  Rodapé -->
+  <footer>
+    <p>&copy; 2025 Dicas Financeiras | Reinaldo</p>
+  </footer>
+
+</body>
+</html>

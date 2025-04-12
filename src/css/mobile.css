@@ -1,0 +1,70 @@
+/* mobile.css */
+/* ===== MOBILE ADAPTATIONS ===== */
+@media (max-width: 768px) {
+   
+    body {
+        padding: 0 1rem 140px; /* adiciona padding lateral */
+      }
+  
+        .hero {
+          padding: 60px 1.5rem 40px;
+          margin-top: 0; /* zera a margem inválida */
+          text-align: center;
+          word-break: break-word;
+        }
+      
+        .hero h1 {
+          font-size: 1.6rem;
+          line-height: 1.3;
+        }
+      
+        .hero .btn {
+          font-size: 1rem;
+          padding: 0.6rem 1rem;
+        }
+      
+      
+  
+    .section {
+      padding: 1rem;
+    }
+  
+    .dica-card {
+      font-size: 1rem;
+      padding: 1.2rem;
+    }
+  
+    .carousel-container {
+      max-width: 100%;
+      padding: 0 1rem;
+    }
+  
+    .indicador {
+      width: 10px;
+      height: 10px;
+    }
+  
+    input, button {
+      font-size: 1rem;
+    }
+  
+    #resultado {
+      font-size: 1rem;
+      text-align: center;
+      padding: 0.5rem;
+    }
+  
+    .dicas-section {
+      padding: 1rem;
+    }
+  
+    .dicas-container {
+      grid-template-columns: 1fr;
+    }
+  
+    footer {
+      font-size: 0.9rem;
+      padding: 0.5rem;
+    }
+  }
+  
