@@ -169,6 +169,27 @@ button {
   }
 }
 
+/*==== Resultado ====*/
+.resultado {
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: background 0.3s ease;
+}
+
+body.dark-mode .resultado {
+  background-color: #2a2a2a;
+}
+
+#resultado {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+#resultado.visible {
+  opacity: 1;
+}
+
+
 /* ===== FOOTER ===== */
 footer {
   text-align: center;
@@ -177,4 +198,95 @@ footer {
   position: fixed;
   bottom: 0;
   left: 0;
+}
+
+[data-aos] {
+  opacity: 0;
+  transition-property: opacity, transform;
+}
+
+.aos-animate {
+  opacity: 1;
+}
+
+.checklist-container {
+  margin-top: 2rem;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  text-align: left;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: box-shadow 0.3s ease;
+}
+
+.checklist-container:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.checklist-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #2e7d32;
+  text-align: center;
+}
+
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.checklist li {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.checklist label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checklist input[type="checkbox"] {
+  margin-right: 12px;
+  width: 22px;
+  height: 22px;
+  accent-color: #4caf50;
+  transition: transform 0.2s;
+}
+
+.checklist input[type="checkbox"]:hover {
+  transform: scale(1.1);
+}
+
+.checklist span {
+  transition: color 0.3s;
+}
+
+.checklist input[type="checkbox"]:checked + span {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.progresso-meta {
+  font-size: 1rem;
+  margin-left: 10px;
+  color: #999;
+  font-weight: normal;
+}
+
+.progresso-meta.verde {
+  color: #4caf50; /* Verde para atingido */
+  font-weight: bold;
+}
+
+.progresso-meta.amarelo {
+  color: #feca57; /* Amarelo para em andamento */
+}
+
+.progresso-meta.vermelho {
+  color: #ff6b6b; /* Vermelho para não atingido */
 }

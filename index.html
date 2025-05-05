@@ -6,16 +6,19 @@
   <title>Minhas Finanças</title>
   <link rel="stylesheet" href="./src/css/style.css" />
   <script defer src="./src/js/app.js"></script>
-  <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="./src/css/mobile.css" media="screen and (max-width: 768px)">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="./src/css/mobile.css" media="screen and (max-width: 768px)" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 </head>
 <body>
 
-  <!--  Hero Section -->
-  <header class="hero">
+  <!-- Hero Section -->
+  <header class="hero" data-aos="fade-down">
     <h1>Comece sua liberdade financeira agora</h1>
     <p>Dicas práticas e uma calculadora simples para ajudar você a economizar de verdade.</p>
     <a href="#calculadora" class="btn" id="btn-comecar">Começar</a>
@@ -23,35 +26,82 @@
 
   <!-- Conteúdo principal -->
   <main>
-    <section id="calculadora" class="section calculadora hidden">
-        <h2>Calculadora de Economia Mensal</h2>
-        <form id="form-calculadora">
-          <label>Renda Mensal (R$)
-            <input type="number" id="renda" required />
-          </label>
-          <label>Despesas Totais (R$)
-            <input type="number" id="despesas" required />
-          </label>
-          <label>Meta de Economia (R$)
-            <input type="number" id="meta" required />
-          </label>
-          <label>Gastos Extras Mensais (R$)
-            <input type="number" id="gastos-extras" required />
-          </label>
-          <button type="submit">Calcular</button>
-        </form>
-        <div id="resultado" class="resultado"></div>
-      </section>
+    <section id="calculadora" class="section calculadora hidden" data-aos="fade-up">
+      <h2>Calculadora de Economia Mensal</h2>
+      <form id="form-calculadora">
+        <label>Renda Mensal (R$)
+          <input type="number" id="renda" required />
+        </label>
+        <label>Despesas Totais (R$)
+          <input type="number" id="despesas" required />
+        </label>
+        <label>Meta de Economia (R$)
+          <input type="number" id="meta" required />
+        </label>
+        <label>Gastos Extras Mensais (R$)
+          <input type="number" id="gastos-extras" required />
+        </label>
+        <button type="submit">Calcular</button>
+      </form>
+      <div id="resultado" class="resultado" style="opacity: 0; transition: opacity 0.6s ease;"></div>
+      <canvas id="graficoEconomia" width="400" height="400" style="margin-top: 2rem;"></canvas>
+    </section>
 
-    <!--  Dicas Práticas -->
-    <div class="carousel-container" id="carouselContainer">
+    <!-- Dicas Práticas -->
+    <div class="carousel-container" id="carouselContainer" data-aos="fade-left">
       <div class="dica-card" id="dicaTexto">Carregando dica...</div>
     </div>
     <div class="carousel-indicadores" id="indicadores"></div>
+
+    <!-- Checklist de metas -->
+    <section class="checklist-container">
+      <h2>🎯 Suas Metas do Mês</h2>
+      <ul class="checklist">
+        <li id="meta1">
+          <label>
+            <input type="checkbox" />
+            <span>💰 Guardar R$100 esse mês</span>
+            <span id="meta1-progresso" class="progresso-meta">Atingido 0%</span>
+          </label>
+        </li>
+        <li id="meta2">
+          <label>
+            <input type="checkbox" />
+            <span>📝 Anotar todos os gastos</span>
+            <span id="meta2-progresso" class="progresso-meta">Atingido 0%</span>
+          </label>
+        </li>
+        <li id="meta3">
+          <label>
+            <input type="checkbox" />
+            <span>🍔 Reduzir gastos com delivery</span>
+            <span id="meta3-progresso" class="progresso-meta">Atingido 0%</span>
+          </label>
+        </li>
+      </ul>
+    </section>
+    
+    
+    <!-- Ilustração motivacional -->
+    <section class="ilustracao" data-aos="zoom-in">
+      <img src="https://undraw.co/api/illustrations/2e3e7337-b5e3-4993-801e-70c1dfb77e92" alt="Economia ilustrada" style="max-width: 400px; width: 100%; margin: 2rem auto; display: block;">
+    </section>
   </main>
 
-  <!--  Rodapé -->
-  <footer>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  </script>
+
+  <!-- Rodapé -->
+  <footer data-aos="fade-up">
     <p>&copy; 2025 Dicas Financeiras | Reinaldo</p>
   </footer>
 
