@@ -1,212 +1,118 @@
-// Função para efeito de digitação
-function digitarTexto(elemento, texto, delay = 25) {
-  elemento.textContent = "";
-  let i = 0;
-
-  const intervalo = setInterval(() => {
-    elemento.textContent += texto.charAt(i);
-    i++;
-    if (i > texto.length) {
-      clearInterval(intervalo);
-    }
-  }, delay);
-}
-
-// Mostrar calculadora ao clicar no botão "Começar"
+// Exibe calculadora ao clicar em "Começar"
 document.getElementById("btn-comecar").addEventListener("click", function (e) {
   e.preventDefault();
   document.querySelector(".calculadora").classList.remove("hidden");
-  document.getElementById("calculadora").scrollIntoView({ behavior: "smooth" });
+  document.getElementById("form-calculadora").reset();
+  document.getElementById("resultado").textContent = "";
 });
 
-// Dicas suaves
-const dicasSuaves = [
-  "🌱 Guardar um pouquinho todo mês não muda sua vida hoje, mas pode abrir caminhos que você nem imagina.",
-  "🎧 Já tentou escutar um podcast sobre grana enquanto caminha ou lava a louça? Aprender pode ser leve.",
-  "🧾 Saber o que você gasta é liberdade — não controle.",
-  "🤝 Falar sobre dinheiro com alguém de confiança pode aliviar e abrir ideias novas.",
-  "📱 Você não precisa largar o iFood — só encontrar seu próprio equilíbrio.",
-  "👟 Comprar algo com dinheiro guardado dá uma sensação diferente. Tipo: 'eu cuidei de mim'.",
-  "📌 Ter uma meta simples muda o jeito que você enxerga o dinheiro.",
-  "💡 Às vezes o que falta não é dinheiro, é um plano.",
-  "🧠 Aprender sobre grana não precisa ser chato — tem conteúdo bom em todo canto.",
-  "🌟 Só de estar aqui lendo isso, você já tá fazendo mais que muita gente."
-];
-
-const dicaTexto = document.getElementById("dicaTexto");
-const indicadoresContainer = document.getElementById("indicadores");
-let indexAtual = 0;
-let intervalo;
-
-function criarIndicadores() {
-  indicadoresContainer.innerHTML = "";
-  dicasSuaves.forEach((_, i) => {
-    const dot = document.createElement("div");
-    dot.classList.add("indicador");
-    dot.addEventListener("click", () => {
-      indexAtual = i;
-      trocarDica();
-      reiniciarIntervalo();
-    });
-    indicadoresContainer.appendChild(dot);
-  });
+// Define sugestão de meta
+function definirMeta(valor) {
+  document.getElementById("meta").value = valor;
+  calcularComCheckboxes();
 }
 
-function atualizarIndicadores() {
-  const todos = document.querySelectorAll(".indicador");
-  todos.forEach((dot, i) => {
-    dot.classList.toggle("ativo", i === indexAtual);
-  });
-}
-
-function trocarDica() {
-  dicaTexto.style.opacity = 0;
-  setTimeout(() => {
-    dicaTexto.textContent = dicasSuaves[indexAtual];
-    dicaTexto.style.opacity = 1;
-    atualizarIndicadores();
-    indexAtual = (indexAtual + 1) % dicasSuaves.length;
-  }, 300);
-}
-
-function iniciarIntervalo() {
-  intervalo = setInterval(trocarDica, 6000);
-}
-
-function reiniciarIntervalo() {
-  clearInterval(intervalo);
-  iniciarIntervalo();
-}
-
-function iniciarDicas() {
-  criarIndicadores();
-  trocarDica();
-  iniciarIntervalo();
-}
-
-// Atualizar gráfico
-let grafico;
-
-function atualizarGrafico(renda, despesas, extras, economia) {
-  const ctx = document.getElementById('graficoEconomia').getContext('2d');
-
-  if (grafico) grafico.destroy();
-
-  grafico = new Chart(ctx, {
-    type: 'pie',
-    data: {
-      labels: ['Despesas', 'Gastos Extras', 'Economia'],
-      datasets: [{
-        label: 'Distribuição financeira',
-        data: [despesas, extras, economia],
-        backgroundColor: ['#ff6b6b', '#feca57', '#1dd1a1'],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'bottom'
-        }
-      }
-    }
-  });
-}
-
-// Atualizar metas
-function atualizarMetas(economia) {
-  const metas = [
-    { id: "meta1", valor: 100 },
-    { id: "meta2", valor: 50 },
-    { id: "meta3", valor: 80 }
-  ];
-
-  metas.forEach(meta => {
-    const progressoElemento = document.getElementById(`${meta.id}-progresso`);
-    const progressoPercentual = Math.min((economia / meta.valor) * 100, 100).toFixed(0);
-
-    progressoElemento.textContent = `Atingido ${progressoPercentual}%`;
-
-    if (progressoPercentual === "100") {
-      progressoElemento.classList.add("verde");
-      progressoElemento.classList.remove("amarelo", "vermelho");
-    } else if (progressoPercentual > 0) {
-      progressoElemento.classList.add("amarelo");
-      progressoElemento.classList.remove("verde", "vermelho");
-    } else {
-      progressoElemento.classList.add("vermelho");
-      progressoElemento.classList.remove("verde", "amarelo");
-    }
-  });
-}
-
-// Calculadora - única função de submit
+// Lida com o envio do formulário
 document.getElementById("form-calculadora").addEventListener("submit", function (e) {
   e.preventDefault();
+  calcularComCheckboxes();
+});
 
-  const renda = parseFloat(document.getElementById("renda").value);
-  const despesas = parseFloat(document.getElementById("despesas").value);
-  const meta = parseFloat(document.getElementById("meta").value);
-  const gastosExtras = parseFloat(document.getElementById("gastos-extras").value);
+// Realiza os cálculos
+function calcularComCheckboxes() {
+  const renda = parseFloat(document.getElementById("renda").value) || 0;
+  const despesas = parseFloat(document.getElementById("despesas").value) || 0;
+  const meta = parseFloat(document.getElementById("meta").value) || 0;
+  const extras = parseFloat(document.getElementById("gastos-extras").value) || 0;
+
+  const economia = renda - despesas - extras;
   const resultado = document.getElementById("resultado");
-
-  const economia = renda - despesas - gastosExtras;
-  const porcentagem = ((economia / renda) * 100).toFixed(1);
-
-  atualizarGrafico(renda, despesas, gastosExtras, economia);
-  atualizarMetas(economia);
-
-  localStorage.setItem('simulacao', JSON.stringify({
-    renda,
-    despesas,
-    extras: gastosExtras
-  }));
+  const porcentagem = renda > 0 ? ((economia / renda) * 100).toFixed(1) : 0;
 
   let mensagem = "";
   if (economia >= meta) {
     mensagem = `🎉 Você pode economizar R$${economia.toFixed(2)} (${porcentagem}%) por mês!`;
   } else if (economia > 0) {
-    const tempoParaMeta = Math.ceil(meta / economia);
-    mensagem = `⚠️ Você está economizando apenas R$${economia.toFixed(2)}. Levaria ${tempoParaMeta} meses para atingir sua meta de R$${meta}.`;
+    const tempo = Math.ceil(meta / economia);
+    mensagem = `⚠️ Você economiza R$${economia.toFixed(2)}. Levaria ${tempo} meses para sua meta.`;
   } else {
-    mensagem = `⚠️ Não é possível economizar com esses valores. Reveja suas despesas e gastos extras.`;
+    mensagem = `❌ Não é possível economizar com esses valores. Reveja suas despesas.`;
   }
 
-  digitarTexto(resultado, mensagem);
+  resultado.textContent = mensagem;
+  resultado.style.color = economia >= meta ? "green" : "red";
+  resultado.style.opacity = 1;
+
+  atualizarProgressoDasMetas(economia);
+}
+
+// Atualiza as metas
+function atualizarProgressoDasMetas(economia) {
+  const metas = [
+    { id: "meta1-progresso", valor: 100 },
+    { id: "meta2-progresso", valor: 50 },
+    { id: "meta3-progresso", valor: 80 }
+  ];
+
+  metas.forEach(meta => {
+    const el = document.getElementById(meta.id);
+    const porcentagem = Math.min((economia / meta.valor) * 100, 100).toFixed(0);
+    el.textContent = `Atingido ${porcentagem}%`;
+  });
+}
+
+// Recalcular ao marcar checkboxes da checklist
+document.querySelectorAll(".recalcular").forEach(cb => {
+  cb.addEventListener("change", calcularComCheckboxes);
 });
 
-// DOM Ready
-window.addEventListener('DOMContentLoaded', () => {
-  const resultado = document.getElementById('resultado');
-  resultado.innerHTML = 'Seu resultado...';
-  resultado.classList.remove('visible');
-  setTimeout(() => resultado.style.opacity = 1, 50);
+// =========================
+// Carrossel de Dicas
+// =========================
+const dicas = [
+  "🌱 Guardar um pouquinho todo mês não muda sua vida hoje, mas pode abrir caminhos incríveis.",
+  "🧾 Saber o que você gasta é liberdade — não controle.",
+  "📌 Ter uma meta simples muda o jeito que você enxerga o dinheiro.",
+  "💡 Às vezes o que falta não é dinheiro, é um plano.",
+  "🎧 Ouça um podcast sobre finanças enquanto caminha.",
+  "👟 Comprar com dinheiro guardado tem outro gosto.",
+  "🧠 Aprender sobre grana pode ser leve e divertido.",
+  "🌟 Só de estar aqui, você já está fazendo mais que muita gente."
+];
 
-  // Dark mode
-  const isDark = localStorage.getItem('modoEscuro') === 'true';
-  if (isDark) {
-    document.body.classList.add('dark-mode');
-    const toggleBtn = document.getElementById('toggleDarkMode');
-    if (toggleBtn) toggleBtn.textContent = '☀️ Modo Claro';
-  }
+let dicaAtual = 0;
+const dicaTexto = document.getElementById("dicaTexto");
+const indicadores = document.getElementById("indicadores");
 
-  // Dicas
-  iniciarDicas();
+function mostrarDica(index) {
+  dicaTexto.style.opacity = 0;
+  setTimeout(() => {
+    dicaTexto.textContent = dicas[index];
+    dicaTexto.style.opacity = 1;
+    atualizarIndicadores();
+  }, 300);
+}
 
-  // Simulação salva
-  const dadosSalvos = localStorage.getItem('simulacao');
-  if (dadosSalvos) {
-    const { renda, despesas, extras } = JSON.parse(dadosSalvos);
+function atualizarIndicadores() {
+  indicadores.innerHTML = "";
+  dicas.forEach((_, i) => {
+    const dot = document.createElement("div");
+    dot.classList.add("indicador");
+    if (i === dicaAtual) dot.classList.add("ativo");
+    dot.addEventListener("click", () => {
+      dicaAtual = i;
+      mostrarDica(dicaAtual);
+    });
+    indicadores.appendChild(dot);
+  });
+}
 
-    document.getElementById('renda').value = renda;
-    document.getElementById('despesas').value = despesas;
-    document.getElementById('gastos-extras').value = extras;
+function iniciarCarrossel() {
+  mostrarDica(dicaAtual);
+  setInterval(() => {
+    dicaAtual = (dicaAtual + 1) % dicas.length;
+    mostrarDica(dicaAtual);
+  }, 7000);
+}
 
-    const economia = renda - despesas - extras;
-    atualizarGrafico(renda, despesas, extras, economia);
-
-    const mensagem = `Você pode economizar R$ ${economia.toFixed(2)} por mês.`;
-    digitarTexto(resultado, mensagem);
-  }
-});
+window.addEventListener("DOMContentLoaded", iniciarCarrossel);
