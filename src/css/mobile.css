@@ -131,3 +131,28 @@
     text-align: center;
   }
 }
+
+/*Limpar */
+
+#limparTudo {
+  font-size: 0.9rem;
+  padding: 0.6rem 1rem;
+  background-color: #eee;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  flex: 1;
+  max-width: 48%;
+}
+
+#limparTudo:hover {
+  background-color: #ddd;
+}
+
+.botoes-acao {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
