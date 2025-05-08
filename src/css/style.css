@@ -256,3 +256,29 @@
     display: none;
   }
   
+    /* ============================================================
+    Limpar Tudo
+     ============================================================ */
+
+     .botoes-acao {
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+    
+    .btn-limpar {
+      background-color: #eee;
+      color: #333;
+      font-size: 0.95rem;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .btn-limpar:hover {
+      background-color: #ddd;
+    }
+    

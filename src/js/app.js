@@ -4,6 +4,9 @@ document.getElementById("btn-comecar").addEventListener("click", function (e) {
   document.querySelector(".calculadora").classList.remove("hidden");
   document.getElementById("form-calculadora").reset();
   document.getElementById("resultado").textContent = "";
+
+  // Mostrar botão de limpar
+  document.getElementById("limparTudo").classList.remove("hidden");
 });
 
 // Define sugestão de meta
@@ -56,8 +59,10 @@ function atualizarProgressoDasMetas(economia) {
 
   metas.forEach(meta => {
     const el = document.getElementById(meta.id);
-    const porcentagem = Math.min((economia / meta.valor) * 100, 100).toFixed(0);
-    el.textContent = `Atingido ${porcentagem}%`;
+    if (el) {
+      const porcentagem = Math.min((economia / meta.valor) * 100, 100).toFixed(0);
+      el.textContent = `Atingido ${porcentagem}%`;
+    }
   });
 }
 
@@ -116,3 +121,26 @@ function iniciarCarrossel() {
 }
 
 window.addEventListener("DOMContentLoaded", iniciarCarrossel);
+
+// =========================
+// Botão: Limpar Tudo
+// =========================
+document.getElementById("limparTudo").addEventListener("click", () => {
+  // Limpar inputs
+  document.querySelectorAll("input[type='number']").forEach(input => {
+    input.value = '';
+  });
+
+  // Limpar resultado
+  const resultadoDiv = document.getElementById("resultado");
+  resultadoDiv.textContent = '';
+  resultadoDiv.style.opacity = 0;
+
+  // Desmarcar checkboxes
+  document.querySelectorAll(".recalcular").forEach(cb => {
+    cb.checked = false;
+  });
+
+  // Resetar metas para 0%
+  atualizarProgressoDasMetas(0);
+});
