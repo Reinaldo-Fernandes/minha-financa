@@ -1,240 +1,258 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
-body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: #f9f9f9;
-  color: #333;
-}
-
-.wrapper {
-  flex: 1;
-}
-
-main {
-  padding-bottom: 2rem;
-}
-
-header.hero {
-  background: linear-gradient(to right, #4e54c8, #8f94fb);
-  color: #fff;
-  text-align: center;
-  padding: 80px 20px;
-}
-
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
-
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-}
-
-.btn {
-  background: #fff;
-  color: #4e54c8;
-  padding: 10px 25px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  background: #ddd;
-}
-
-.section {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
-.calculadora-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.coluna-formulario,
-.coluna-lateral {
-  flex: 1;
-}
-
-@media (min-width: 900px) {
+/* ============================================================
+   RESET E CONFIGURAÇÕES GERAIS
+   ============================================================ */
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  .wrapper {
+    flex: 1;
+  }
+  
+  main {
+    padding-bottom: 2rem;
+  }
+  
+  /* ============================================================
+     CABEÇALHO (HEADER)
+     ============================================================ */
+  header.hero {
+    background: linear-gradient(to right, #4e54c8, #8f94fb);
+    color: #fff;
+    text-align: center;
+    padding: 80px 20px;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .btn {
+    background-color: #fff;
+    color: #4e54c8;
+    padding: 10px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: #ddd;
+  }
+  
+  /* ============================================================
+     SEÇÃO PRINCIPAL
+     ============================================================ */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
   .calculadora-grid {
-    flex-direction: row;
-    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
-
-  .coluna-formulario {
-    max-width: 50%;
-  }
-
+  
+  .coluna-formulario,
   .coluna-lateral {
-    max-width: 50%;
-    padding-left: 2rem;
+    flex: 1;
   }
-}
-
-form label {
-  display: block;
-  margin-bottom: 15px;
-}
-
-input[type="number"] {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  margin-top: 5px;
-}
-
-button {
-  width: 100%;
-  padding: 12px;
-  background: #4e54c8;
-  color: white;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 15px;
-}
-
-button:hover {
-  background: #3b40a4;
-}
-
-.resultado {
-  margin-top: 20px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-align: center;
-}
-
-.sugestoes-meta {
-  text-align: center;
-  margin: 30px 0;
-}
-
-.sugestoes-meta button {
-  margin: 5px;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 20px;
-  background-color: #ddd;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.sugestoes-meta button:hover {
-  background-color: #ccc;
-}
-
-.checklist-inicial {
-  margin-top: 30px;
-}
-
-.checklist-inicial h3 {
-  margin-bottom: 10px;
-}
-
-.checklist-inicial .checklist {
-  list-style: none;
-  padding-left: 0;
-}
-
-.checklist-inicial li {
-  margin-bottom: 8px;
-}
-
-.metas-mes {
-  margin-top: 30px;
-}
-
-.card-metas {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.meta-card {
-  background-color: #f0f0ff;
-  padding: 12px 16px;
-  border-radius: 8px;
-  font-size: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.progresso-meta {
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.ilustracao img {
-  margin-top: 40px;
-  max-width: 100%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Carrossel de dicas */
-.carousel-container {
-  margin-top: 30px;
-  text-align: center;
-}
-
-.dica-card {
-  background: #e8e8ff;
-  padding: 20px;
-  border-radius: 12px;
-  margin: 0 auto;
-  max-width: 500px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transition: opacity 0.5s ease;
-  min-height: 70px;
-}
-
-.carousel-indicadores {
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-}
-
-.carousel-indicadores .indicador {
-  width: 10px;
-  height: 10px;
-  background: #ccc;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.carousel-indicadores .ativo {
-  background: #4e54c8;
-}
-
-footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 1rem;
-  width: 100%;
-}
-
-.hidden {
-  display: none;
-}
+  
+  @media (min-width: 900px) {
+    .calculadora-grid {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  
+    .coluna-formulario {
+      max-width: 50%;
+    }
+  
+    .coluna-lateral {
+      max-width: 50%;
+      padding-left: 2rem;
+    }
+  }
+  
+  /* ============================================================
+     FORMULÁRIO
+     ============================================================ */
+  form label {
+    display: block;
+    margin-bottom: 15px;
+  }
+  
+  input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4e54c8;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #3b40a4;
+  }
+  
+  /* ============================================================
+     RESULTADO
+     ============================================================ */
+  .resultado {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  /* ============================================================
+     CHECKLIST INICIAL
+     ============================================================ */
+  .checklist-inicial {
+    margin-top: 30px;
+  }
+  
+  .checklist-inicial h3 {
+    margin-bottom: 10px;
+  }
+  
+  .checklist-inicial .checklist {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .checklist-inicial li {
+    margin-bottom: 8px;
+  }
+  
+  /* ============================================================
+     METAS DO MÊS
+     ============================================================ */
+  .metas-mes {
+    margin-top: 30px;
+  }
+  
+  .card-metas {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .meta-card {
+    background-color: #f0f0ff;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .progresso-meta {
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  /* ============================================================
+     CARROSSEL DE DICAS
+     ============================================================ */
+  .carousel-container {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .dica-card {
+    background-color: #e8e8ff;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 0 auto;
+    max-width: 500px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.5s ease;
+    min-height: 70px;
+  }
+  
+  .carousel-indicadores {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .carousel-indicadores .indicador {
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .carousel-indicadores .ativo {
+    background-color: #4e54c8;
+  }
+  
+  /* ============================================================
+     ILUSTRAÇÃO
+     ============================================================ */
+  .ilustracao img {
+    margin-top: 40px;
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* ============================================================
+     RODAPÉ (FOOTER)
+     ============================================================ */
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    width: 100%;
+    font-size: 0.9rem;
+  }
+  
+  /* ============================================================
+     CLASSES UTILITÁRIAS
+     ============================================================ */
+  .hidden {
+    display: none;
+  }
+  
