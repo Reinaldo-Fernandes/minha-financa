@@ -16,16 +16,28 @@
 </head>
 <body>
   <div class="wrapper">
+
     <header class="hero" data-aos="fade-down">
-      <h1>Comece sua liberdade financeira agora</h1>
-      <p>Dicas práticas e uma calculadora simples para ajudar você a economizar de verdade.</p>
-      <a href="#calculadora" class="btn" id="btn-comecar">Começar</a>
+      <div class="hero-conteudo">
+        <div class="logo-hero">
+          <div class="logo-symbol">⧉</div>
+          <div class="logo-text">
+            <span class="initials">RF</span>
+            <span class="fullname">Reinaldo Finanças</span>
+          </div>
+        </div>
+    
+        <div class="texto-hero">
+          <h1>Comece sua liberdade financeira agora</h1>
+          <p>Dicas práticas e uma calculadora simples para ajudar você a economizar de verdade.</p>
+          <a href="#calculadora" class="btn" id="btn-comecar">Começar</a>
+        </div>
+      </div>
     </header>
 
     <main>
       <section id="calculadora" class="section calculadora hidden" data-aos="fade-up">
         <div class="calculadora-grid">
-          <!-- Coluna esquerda: formulário -->
           <div class="coluna-formulario">
             <h2>Calculadora de Economia Mensal</h2>
             <form id="form-calculadora" novalidate>
@@ -41,17 +53,15 @@
               <label for="gastos-extras">Gastos Extras Mensais (R$)
                 <input type="number" id="gastos-extras" required />
               </label>
-              
+
               <div class="botoes-acao">
                 <button type="submit">Calcular</button>
                 <button type="button" id="limparTudo" class="btn-limpar hidden">Limpar</button>
               </div>
-              
             </form>
             <div id="resultado" class="resultado" style="opacity: 0;"></div>
           </div>
 
-          <!-- Coluna direita: checklist, metas, imagem e dicas -->
           <div class="coluna-lateral">
             <div class="checklist-inicial">
               <h3>Comece assim:</h3>
@@ -71,11 +81,9 @@
                 <div class="meta-card">
                   📝 Anotar todos os gastos <span id="meta2-progresso" class="progresso-meta">Atingido 0%</span>
                 </div>
-               
               </div>
             </div>
-            
-            <!-- Carrossel de Dicas -->
+
             <div class="carousel-container" id="carouselContainer">
               <div class="dica-card" id="dicaTexto">Carregando dica...</div>
               <div class="carousel-indicadores" id="indicadores"></div>
@@ -86,7 +94,6 @@
     </main>
   </div>
 
-  
   <footer data-aos="fade-up">
     <p>&copy; 2025 Dicas Financeiras | Reinaldo</p>
   </footer>
@@ -97,4 +104,5 @@
     AOS.init({ duration: 1000, once: true });
   </script>
 </body>
+
 </html>
