@@ -1,19 +1,26 @@
 /* mobile.css */
 /* ===== MOBILE ADAPTATIONS ===== */
 @media (max-width: 768px) {
-   
   body {
-    padding: 0 1rem 140px;
-    
+    padding: 0 1rem 0; /* Remover o padding inferior que estava criando o espaço para o footer */
+    margin: 0;
+    min-height: 100vh; /* Garante que a altura mínima da página seja 100vh */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main-content {
+    flex: 1; /* Faz o conteúdo principal ocupar o espaço restante */
   }
 
   /* Ajuste para o Header */
   .hero {
-    padding: 80px 1.5rem 20px; /* Menos altura, mais compacto */
+    padding: 80px 1rem 20px; 
     margin-top: 0;
     text-align: center;
     word-break: break-word;
-    margin-top: -90px;
+    margin-top: -100px;
+    
   }
 
   .hero h1 {
@@ -32,6 +39,7 @@
     font-size: 0.9rem;
     padding: 0.8rem 1rem; /* Menos padding para um footer mais fino */
     text-align: center;
+    margin-top: auto; /* Garante que o footer vá para o final da página */
   }
 
   .section {
