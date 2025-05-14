@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wdth,wght@1,18..144,112,900&display=swap');
 
+
 /* ============================================================
    RESET E CONFIGURAÇÕES GERAIS
    ============================================================ */
@@ -32,15 +33,15 @@ body {
 }
 
 /* ============================================================
-   CABEÇALHO (HEADER) - Atualizações de altura e espessura de fonte
+   CABEÇALHO (HEADER)
    ============================================================ */
 header.hero {
   background: linear-gradient(to right, #4e54c8, #8f94fb);
   color: #fff;
-  padding: 60px 20px 80px; /* Aumento de altura do header */
+  padding: 60px 20px 80px;
   text-align: center;
   position: relative;
-  font-weight: 400; /* Espessura da fonte */
+  font-weight: 400;
 }
 
 .hero-conteudo {
@@ -49,6 +50,7 @@ header.hero {
   padding: 0 40px;
 }
 
+/* Mobile (layout empilhado) */
 .logo-hero {
   position: absolute;
   top: 10px;
@@ -87,20 +89,29 @@ header.hero {
 }
 
 .texto-hero {
-  text-align: center;
-  padding-top: 40px;
+  flex: 1;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
+
+.texto-hero .btn {
+  align-self: center; /* Isso centraliza apenas o botão */
+  margin-top: 20px;
+}
+
 
 .texto-hero h1 {
   font-size: 2.5rem;
   margin-bottom: 10px;
-  font-weight: 800; /* Aumentando espessura do título */
+  font-weight: 800;
 }
 
 .texto-hero p {
   font-size: 1.2rem;
   margin-bottom: 20px;
-  font-weight: 400; /* Ajuste na espessura do parágrafo */
+  font-weight: 400;
 }
 
 .btn {
@@ -360,4 +371,27 @@ footer {
 [data-aos] {
   backface-visibility: hidden;
   transform: translateZ(0);
+}
+
+/* ============================================================
+   LAYOUT DESKTOP - HERO LADO A LADO
+   ============================================================ */
+@media (min-width: 769px) {
+  .hero-conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .logo-hero {
+    position: static;
+    margin-top: 0;
+    max-width: 300px;
+  }
+
+  .texto-hero {
+    text-align: left;
+    flex: 1;
+  }
 }
